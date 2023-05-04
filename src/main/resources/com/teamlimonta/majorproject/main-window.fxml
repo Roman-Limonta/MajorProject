@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane fx:id="mainBorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.teamlimonta.majorproject.MainController">
+    <top>
+        <VBox>
+            <ToolBar>
+                <HBox spacing="10.0">
+                    <Button onAction="#showNewProjectDialog" text="New Project">
+                        <tooltip>
+                            <Tooltip text="Add a new Project" />
+                        </tooltip>
+                    </Button>
+                    <Button onAction="#addCharacterName" text="Add Name to List">
+                        <tooltip>
+                            <Tooltip text="Add Character Name to a List of saved names." />
+                        </tooltip>
+                    </Button>
+                    <Button onAction="#viewCharacterNameList" text="View Name List">
+                        <tooltip>
+                            <Tooltip text="View the list of Character Names." />
+                        </tooltip>
+                    </Button>
+                </HBox>
+            </ToolBar>
+        </VBox>
+
+    </top>
+    <left>
+        <ListView fx:id="projectsView" onKeyPressed="#handleKeyPressed">
+
+        </ListView>
+    </left>
+    <center>
+        <VBox style="-fx-background-color: white">
+            <TextArea fx:id="projectDetailsTextArea" wrapText="true" VBox.vgrow="ALWAYS" />
+            <HBox alignment="TOP_RIGHT">
+                <Label style="-fx-background-color: white" text="Concept Started On: ">
+                    <font>
+                        <Font name="Times New Roman bold" size="20" />
+                    </font>
+                </Label>
+                <Label fx:id="bottomLineLabel" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20" />
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+
+    </center>
+</BorderPane>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<DialogPane fx:controller="com.teamlimonta.majorproject.DialogController"
+            xmlns:fx="http://javafx.com/fxml">
+    <headerText>
+        we could put instruction here!
+    </headerText>
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Project Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="nameTextField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="The Main Concept:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="detailTextArea" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                      wrapText="true"/>
+            <Label text="Protagonist Name:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="protagonistTextField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Question Tool:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextArea  fx:id="questionToolTextArea" GridPane.rowIndex="3" GridPane.columnIndex="1"
+                       wrapText="true"/>
+            <Label text="The Heart of Darkness Scene:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextArea  fx:id="heartDarknessToolTextArea" GridPane.rowIndex="4" GridPane.columnIndex="1"
+                       wrapText="true"/>
+        </GridPane>
+    </content>
+</DialogPane>
