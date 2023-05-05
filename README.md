@@ -17,3 +17,5 @@
 
 # So Welcome to Story Concept Developer. Keep Writing.
 
+- **A rough draft of my UML**:
+[MajorProjectUML.pdf](https://github.com/RomanLimonta/MajorProject/files/11402872/MajorProjectUML.pdf)
