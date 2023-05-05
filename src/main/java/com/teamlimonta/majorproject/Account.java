@@ -14,21 +14,21 @@ public class Account {
         this.userLoginName = userLoginName;
         this.password = password;
 
-        try {
-            FileWriter myWriter = new FileWriter("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\" + userLoginName + ".txt");
-//            for (String string : listToWrite) {
-//                myWriter.write(string);
-//                myWriter.write("\r\n");
-//            }
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            //e.printStackTrace();
-        }
-
-        System.out.println("test");
-
-        System.out.println("New account made");
+//        try {
+//            FileWriter myWriter = new FileWriter("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\" + userLoginName + ".txt");
+////            for (String string : listToWrite) {
+////                myWriter.write(string);
+////                myWriter.write("\r\n");
+////            }
+//            myWriter.close();
+//            System.out.println("Successfully wrote to the file.");
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            //e.printStackTrace();
+//        }
+//
+//        System.out.println("test");
+//
+//        System.out.println("New account made");
     }
 }

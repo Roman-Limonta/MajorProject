@@ -13,9 +13,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-window.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 650, 400);
         stage.setResizable(false);
-        stage.setTitle("ScreenWriter Buddy");
+        stage.setTitle("Story Concept Creator");
         stage.setScene(scene);
         stage.show();
     }

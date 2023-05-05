@@ -8,7 +8,7 @@
 <DialogPane fx:controller="com.teamlimonta.majorproject.DialogController"
             xmlns:fx="http://javafx.com/fxml">
     <headerText>
-        we could put instruction here!
+        This is a Name of list that you saved.
     </headerText>
     <content>
         <GridPane vgap="10" hgap="10">

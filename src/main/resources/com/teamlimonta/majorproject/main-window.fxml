@@ -23,6 +23,11 @@
                             <Tooltip text="View the list of Character Names." />
                         </tooltip>
                     </Button>
+                    <Button onAction="#backToLoginWindow" text="LogOut">
+                        <tooltip>
+                            <Tooltip text="Log Out of Session" />
+                        </tooltip>
+                    </Button>
                 </HBox>
             </ToolBar>
         </VBox>

@@ -28,6 +28,7 @@ public class LoginController {
     public TextField passwordRegTextField;
     public Map<String, String> userLogin = HashMapFromTextFile();
     public static File loginInfofile = new File("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\UserNameAndPassword.txt");
+    public Button adminButton;
 
 
     public void onLoginClicked(ActionEvent event) throws Exception {
@@ -53,6 +54,26 @@ public class LoginController {
     public void onRegisterClicked(ActionEvent event) throws IOException {
         System.out.println("Register Clicked");
         stageSwitcher("register-window.fxml", event);
+    }
+
+    public void onAdminClicked(ActionEvent event) throws IOException {
+        System.out.println("Admin Clicked");
+        if (!userLogin.containsKey(userNameTextField.getText())) {
+            resultMessage.setText("Login Name Not Found!");
+        }
+
+        //This is to check if the username and password are registered!
+        if (userLogin.containsKey(userNameTextField.getText()) && userNameTextField.getText().matches("admin")) {
+            if (userLogin.get(userNameTextField.getText()).equals(passwordTextField.getText()) && passwordTextField.getText().matches("admin")) {
+                resultMessage.setText("Successful Login");
+
+                stageSwitcher("admin-window.fxml",event);
+            } else {
+                resultMessage.setText("Failed Login");
+            }
+        }
+
+
     }
 
     public void onEnterButtonClicked(ActionEvent event) throws IOException {

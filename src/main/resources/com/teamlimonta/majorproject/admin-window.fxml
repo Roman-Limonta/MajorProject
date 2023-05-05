@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane prefHeight="833.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamlimonta.majorproject.AdminController">
+<headerText>
+    ------A list of All USERNAME and PASSWORD: [USERNAME:PASSWORD]------
+</headerText>
+<content>
+    <VBox prefHeight="500.0" prefWidth="600.0" spacing="10.0">
+         <AnchorPane prefHeight="832.0" prefWidth="618.0">
+            <children>
+              <ListView fx:id="projectsView" onKeyPressed="#handleKeyPressed" prefHeight="717.0" prefWidth="612.0">
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+               </ListView>
+              <HBox alignment="CENTER" layoutX="9.0" layoutY="737.0" prefHeight="35.0" prefWidth="596.0" spacing="5.0">
+                  <Label fx:id="resultLabel" prefHeight="25.0" prefWidth="240.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button onAction="#deleteAccount" prefHeight="25.0" prefWidth="105.0" text="Delete Account">
+                      <tooltip>
+                          <Tooltip text="Delete Account" />
+                      </tooltip>
+                  </Button>
+                  <Button onAction="#searchUserName" text="Search Name">
+                      <tooltip>
+                          <Tooltip text="Search User Name" />
+                      </tooltip>
+                  </Button>
+                  <Button onAction="#backToLoginWindow" text="Log Out">
+                      <tooltip>
+                          <Tooltip text="Back to Login Screen" />
+                      </tooltip>
+                  </Button>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+              </HBox>
+            </children>
+         </AnchorPane>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+    </VBox>
+
+</content>
+</DialogPane>

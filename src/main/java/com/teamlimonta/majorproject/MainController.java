@@ -3,11 +3,15 @@ package com.teamlimonta.majorproject;
 import com.teamlimonta.majorproject.datamodel.ProjectData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.*;
@@ -99,9 +103,11 @@ public class MainController {
             e.printStackTrace();
             return;
         }
+        Button button = new Button();
 
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -203,59 +209,6 @@ public class MainController {
 
     }
 
-    //    public void sorting(String[] array, int start, int end) {
-//        int i = start;
-//        int k = end;
-//        if (end - start >= 1) {
-//            String pivot = array[start];
-//            while (k > i) {
-//                while (array[i].compareTo(pivot) <= 0 && i <= end && k > i)
-//                    i++;
-//                while (array[k].compareTo(pivot) > 0 && k >= start && k >= i)
-//                    k--;
-//                if (k > i)
-//                    swap(array, i, k);
-//            }
-//            swap(array, start, k);
-//            sorting(array, start, k - 1);
-//            sorting(array, k + 1, end);
-//        } else {return;}
-//
-//    }
-//
-//    public void swap(String[] array, int index1, int index2) {
-//        String temp = array[index1];
-//        array[index1] = array[index2];
-//        array[index2] = temp;
-//    }
-//
-    public void sorting(String array[], int start, int end) {
-        int i = start;
-        int k = end;
-        if (end - start >= 1) {
-            String pivot = array[start];
-            while (k > i) {
-                while (array[i].compareTo(pivot) <= 0 && i <= end && k > i)
-                    i++;
-                while (array[k].compareTo(pivot) > 0 && k >= start && k >= i)
-                    k--;
-                if (k > i)
-                    swap(array, i, k);
-            }
-            swap(array, start, k);
-            sorting(array, start, k - 1);
-            sorting(array, k + 1, end);
-        } else {
-            return;
-        }
-    }
-
-    public void swap(String array[], int index1, int index2) {
-        String temp = array[index1];
-        array[index1] = array[index2];
-        array[index2] = temp;
-        System.out.println("test");
-    }
 
     public void viewCharacterNameList(ActionEvent event) throws IOException {
 
@@ -270,10 +223,6 @@ public class MainController {
 
         }
 
-        System.out.println(nameListArray);
-
-        qsort(nameListArray, 0, nameListArray.size() - 1);
-        System.out.println(nameListArray);
 
 //
 //        sorting(nameListArray, 0, nameListArray.size()-1);
@@ -319,32 +268,43 @@ public class MainController {
 //        System.out.println(Arrays.toString(array));
     }
 
-    public static void qsort(ArrayList<String> mylist, int left, int right) {
-        //base case
+//    public static void qsort(ArrayList<String> mylist, int left, int right) {
+//        //base case
+//
+//        if (left >= right) {
+//        } else {
+//            String pivot = mylist.get(left);
+//            int i = left + 1;
+//            String tmp;
+//            //partition array
+//            for (int j = left + 1; j <= right; j++) {
+//                if (pivot.charAt(0) > mylist.get(j).charAt(0)) {
+//                    tmp = mylist.get(j);
+//                    mylist.set(j, mylist.get(i));
+//                    mylist.set(i, tmp);
+//
+//                    i++;
+//                }
+//            }
+//            //put pivot in right position
+//            mylist.set(left, mylist.get(i - 1));
+//            mylist.set(i - 1, pivot);
+//
+//            //call qsort on right and left sides of pivot
+//            qsort(mylist, left, i - 2);
+//            qsort(mylist, i, right);
+//        }
+//
+//    }
 
-        if (left >= right) {
-        } else {
-            String pivot = mylist.get(left);
-            int i = left + 1;
-            String tmp;
-            //partition array
-            for (int j = left + 1; j <= right; j++) {
-                if (pivot.charAt(0) > mylist.get(j).charAt(0)) {
-                    tmp = mylist.get(j);
-                    mylist.set(j, mylist.get(i));
-                    mylist.set(i, tmp);
-
-                    i++;
-                }
-            }
-            //put pivot in right position
-            mylist.set(left, mylist.get(i - 1));
-            mylist.set(i - 1, pivot);
-
-            //call qsort on right and left sides of pivot
-            qsort(mylist, left, i - 2);
-            qsort(mylist, i, right);
-        }
-
+    public void backToLoginWindow(ActionEvent event) throws IOException {
+        String fxml = "login-window.fxml";
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
+
 }
