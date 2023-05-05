@@ -32,6 +32,7 @@ public class LoginController {
 
     public void onLoginClicked(ActionEvent event) throws Exception {
         System.out.println("LoginClicked");
+        System.out.println("Test");
         if (!userLogin.containsKey(userNameTextField.getText())) {
             resultMessage.setText("Login Name Not Found!");
         }

@@ -18,6 +18,7 @@ public class Projects {
         this.questionTool = questionTool;
         this.heartOfDarkness = heartOfDarkness;
         this.dateCreated = LocalDate.now();
+        System.out.println("test");
     }
 
     public Projects(String name, String details, String protagonist,String questionTool, String heartOfDarkness, LocalDate dateCreated) {

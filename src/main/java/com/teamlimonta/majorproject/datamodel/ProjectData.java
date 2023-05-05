@@ -23,6 +23,7 @@ public class ProjectData {
 
     public static ProjectData getInstance() {
         return instance;
+
     }
 
     private ProjectData() {
@@ -35,6 +36,7 @@ public class ProjectData {
 
     public void addProject(Projects project) {
         projectsList.add(project);
+        System.out.println("test");
     }
 
     public void deleteProject(Projects project){

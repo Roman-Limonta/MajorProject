@@ -24,6 +24,7 @@ public class Main extends Application {
         launch();
         System.out.println("JavaFX Version: " + System.getProperty("javafx.version"));
         System.out.println("JavaFX Runtime Version: " + System.getProperty("javafx.runtime.version"));
+        System.out.println("Test");
 
     }
 

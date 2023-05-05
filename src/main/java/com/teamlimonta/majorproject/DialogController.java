@@ -28,6 +28,7 @@ public class DialogController {
         Projects newProject = new Projects(projectName, details, protagonist, questionTool, heartOfDarkness);
         ProjectData.getInstance().addProject(newProject);
 
+        System.out.println("Test");
         return newProject;
     }
 }

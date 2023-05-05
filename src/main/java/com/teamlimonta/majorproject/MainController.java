@@ -254,6 +254,7 @@ public class MainController {
         String temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
+        System.out.println("test");
     }
 
     public void viewCharacterNameList(ActionEvent event) throws IOException {

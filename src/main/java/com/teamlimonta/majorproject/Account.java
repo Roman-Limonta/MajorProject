@@ -27,6 +27,7 @@ public class Account {
             //e.printStackTrace();
         }
 
+        System.out.println("test");
 
         System.out.println("New account made");
     }
