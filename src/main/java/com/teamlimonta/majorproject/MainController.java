@@ -2,6 +2,7 @@ package com.teamlimonta.majorproject;
 
 import com.teamlimonta.majorproject.datamodel.ProjectData;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,10 +23,14 @@ import java.util.*;
 public class MainController {
 
     public ListView<Projects> projectsView = new ListView<>();
+    public ListView<String> nameListView = new ListView<>();
     public TextArea projectDetailsTextArea;
     public Label bottomLineLabel;
     public BorderPane mainBorderPane;
+    @FXML
+    public ListView<String> listOFNamesViewer = new ListView<>();
     private Stack<String> nameList = new Stack<>();
+    public Hashtable<Integer, String> table = new Hashtable<>();
 
     private ContextMenu listContextMenu;
     private final File file = new File("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\ListofNames.txt");
@@ -88,12 +93,11 @@ public class MainController {
     }
 
     public void showNewProjectDialog(ActionEvent event) {
-        System.out.println("new Project Button");
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
         dialog.setTitle("Add New Concept");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("newProjectDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("newproject-dialog.fxml"));
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -103,7 +107,6 @@ public class MainController {
             e.printStackTrace();
             return;
         }
-        Button button = new Button();
 
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
@@ -113,7 +116,6 @@ public class MainController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             DialogController controller = fxmlLoader.getController();
             Projects newProject = controller.processResults();
-            //projectsView.getItems().setAll(ProjectData.getInstance().getProjectsItem());
             projectsView.getSelectionModel().select(newProject);
         }
     }
@@ -206,96 +208,75 @@ public class MainController {
             popUP.close();
         }
         System.out.println(nameList);
-
     }
-
 
     public void viewCharacterNameList(ActionEvent event) throws IOException {
 
-        Stack<String> temp;
-        temp = (Stack<String>) nameList.clone();
-        ArrayList<String> nameListArray = new ArrayList<>();
+        if (nameList != null) {
+            String temp = nameList.toString().trim();
+            temp = temp.replaceAll("[^a-zA-Z0-9]", " ");
+            String[] list = temp.split("[^a-zA-Z0-9]");
+
+            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(list).subList(0, list.length - 1));
+
+            for (int i = 0; i < arrayList.size() - 1; i++) {
+                if (arrayList.get(i).isEmpty() || arrayList.get(i).isBlank()) {
+                    arrayList.remove(i);
+                    if (i != 0) {i--;}
+                }
+            }
+
+            System.out.println("this is the array list ");
+            System.out.println(arrayList);
+            System.out.println("The array length is= " + arrayList.size());
+
+            for (int i = 0; i < arrayList.size() - 1; i++) {
+                table.put(i, arrayList.get(i));
+            }
+
+            System.out.println(table.toString());
+
+//            for(String table : table.values()){
+//                listOFNamesViewer.getItems().add(table);
+//            }
+            for(String table : table.values()){
+                listOFNamesViewer.getItems().add(table);
+            }
+            listOFNamesViewer.getSelectionModel().selectFirst();
 
 
-        while (!temp.isEmpty()) {
-            int i = 0;
-            nameListArray.add(temp.pop());
+
+//            Dialog<ButtonType> dialog = new Dialog<>();
+//            dialog.initOwner(mainBorderPane.getScene().getWindow());
+//            dialog.setTitle("List of Names");
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("namelist-dialog.fxml"));
+//
+//            try {
+//                dialog.getDialogPane().setContent(fxmlLoader.load());
+//
+//            } catch (IOException e) {
+//                System.out.println("Couldn't load the dialog");
+//                e.printStackTrace();
+//                return;
+//            }
+//            //Button button = new Button();
+//
+//            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+//            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+//
+//
+//            Optional<ButtonType> result = dialog.showAndWait();
+//            if (result.isPresent() && result.get() == ButtonType.OK) {
+//               // DialogController controller = fxmlLoader.getController();
+//                //Projects newProject = controller.processResults();
+//                //projectsView.getSelectionModel().select(newProject);
+//            }
+
 
         }
 
-
-//
-//        sorting(nameListArray, 0, nameListArray.size()-1);
-//        System.out.println(nameListArray);
-//
-////        System.out.println(Arrays.toString(nameListArray));
-////
-////        sorting(nameListArray,0,nameListArray.length-1);
-////        System.out.println(Arrays.toString(nameListArray));
-//
-//
-////        String[] trimmedArray = new String[names.length];
-////        for (int i = 0; i < names.length; i++)
-////            trimmedArray[i] = names[i].trim();
-
-//        // list that holds strings of a file
-//        List<String> listOfStrings = new ArrayList<String>();
-//
-//        // load data from file
-//        BufferedReader bf = new BufferedReader(new FileReader(file));
-//
-//        // read entire line as string
-//        String line = bf.readLine();
-//
-//        // checking for end of file
-//        while (line != null) {
-//            listOfStrings.add(line);
-//            line = bf.readLine();
-//        }
-//
-//        // closing bufferreader object
-//        bf.close();
-//
-//        // storing the data in arraylist to array
-//        String[] array = listOfStrings.toArray(new String[0]);
-//
-//        // printing each line of file
-//        // which is stored in array
-//        for (String str : array) {
-//            System.out.println(str);
-//    }
-//        sorting(array,0, array.length-1);
-//        System.out.println(Arrays.toString(array));
     }
-
-//    public static void qsort(ArrayList<String> mylist, int left, int right) {
-//        //base case
-//
-//        if (left >= right) {
-//        } else {
-//            String pivot = mylist.get(left);
-//            int i = left + 1;
-//            String tmp;
-//            //partition array
-//            for (int j = left + 1; j <= right; j++) {
-//                if (pivot.charAt(0) > mylist.get(j).charAt(0)) {
-//                    tmp = mylist.get(j);
-//                    mylist.set(j, mylist.get(i));
-//                    mylist.set(i, tmp);
-//
-//                    i++;
-//                }
-//            }
-//            //put pivot in right position
-//            mylist.set(left, mylist.get(i - 1));
-//            mylist.set(i - 1, pivot);
-//
-//            //call qsort on right and left sides of pivot
-//            qsort(mylist, left, i - 2);
-//            qsort(mylist, i, right);
-//        }
-//
-//    }
 
     public void backToLoginWindow(ActionEvent event) throws IOException {
         String fxml = "login-window.fxml";

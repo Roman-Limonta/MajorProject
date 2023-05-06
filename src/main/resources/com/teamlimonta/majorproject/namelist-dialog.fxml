@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamlimonta.majorproject.MainController">
+    <VBox prefHeight="700.0" prefWidth="600.0">
+        <ListView fx:id="listOFNamesViewer" prefHeight="640.0" prefWidth="600.0"/>
+    </VBox>
+</AnchorPane>
