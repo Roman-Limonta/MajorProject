@@ -18,7 +18,7 @@
                             <Tooltip text="Add Character Name to a List of saved names." />
                         </tooltip>
                     </Button>
-                    <Button onAction="#viewCharacterNameList" text="View Name List">
+                    <Button fx:id="viewNameListButton" mnemonicParsing="false" onAction="#onViewCharacterNameListClicked" text="View Name List">
                         <tooltip>
                             <Tooltip text="View the list of Character Names." />
                         </tooltip>

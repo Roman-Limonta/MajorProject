@@ -29,11 +29,14 @@ public class MainController {
     public BorderPane mainBorderPane;
     @FXML
     public ListView<String> listOFNamesViewer = new ListView<>();
+    @FXML
+    public Button viewNameListButton;
     private Stack<String> nameList = new Stack<>();
     public Hashtable<Integer, String> table = new Hashtable<>();
 
     private ContextMenu listContextMenu;
     private final File file = new File("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\ListofNames.txt");
+
 
 
     public void initialize() {
@@ -210,39 +213,40 @@ public class MainController {
         System.out.println(nameList);
     }
 
+
     public void viewCharacterNameList(ActionEvent event) throws IOException {
 
-        if (nameList != null) {
-            String temp = nameList.toString().trim();
-            temp = temp.replaceAll("[^a-zA-Z0-9]", " ");
-            String[] list = temp.split("[^a-zA-Z0-9]");
-
-            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(list).subList(0, list.length - 1));
-
-            for (int i = 0; i < arrayList.size() - 1; i++) {
-                if (arrayList.get(i).isEmpty() || arrayList.get(i).isBlank()) {
-                    arrayList.remove(i);
-                    if (i != 0) {i--;}
-                }
-            }
-
-            System.out.println("this is the array list ");
-            System.out.println(arrayList);
-            System.out.println("The array length is= " + arrayList.size());
-
-            for (int i = 0; i < arrayList.size() - 1; i++) {
-                table.put(i, arrayList.get(i));
-            }
-
-            System.out.println(table.toString());
-
+//        if (nameList != null) {
+//            String temp = nameList.toString().trim();
+//            temp = temp.replaceAll("[^a-zA-Z0-9]", " ");
+//            String[] list = temp.split("[^a-zA-Z0-9]");
+//
+//            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(list).subList(0, list.length - 1));
+//
+//            for (int i = 0; i < arrayList.size() - 1; i++) {
+//                if (arrayList.get(i).isEmpty() || arrayList.get(i).isBlank()) {
+//                    arrayList.remove(i);
+//                    if (i != 0) {i--;}
+//                }
+//            }
+//
+//            System.out.println("this is the array list ");
+//            System.out.println(arrayList);
+//            System.out.println("The array length is= " + arrayList.size());
+//
+//            for (int i = 0; i < arrayList.size() - 1; i++) {
+//                table.put(i, arrayList.get(i));
+//            }
+//
+//            System.out.println(table.toString());
+//
+////            for(String table : table.values()){
+////                listOFNamesViewer.getItems().add(table);
+////            }
 //            for(String table : table.values()){
 //                listOFNamesViewer.getItems().add(table);
 //            }
-            for(String table : table.values()){
-                listOFNamesViewer.getItems().add(table);
-            }
-            listOFNamesViewer.getSelectionModel().selectFirst();
+//            listOFNamesViewer.getSelectionModel().selectFirst();
 
 
 
@@ -268,16 +272,18 @@ public class MainController {
 //
 //            Optional<ButtonType> result = dialog.showAndWait();
 //            if (result.isPresent() && result.get() == ButtonType.OK) {
-//               // DialogController controller = fxmlLoader.getController();
-//                //Projects newProject = controller.processResults();
-//                //projectsView.getSelectionModel().select(newProject);
+//                DialogController controller = fxmlLoader.getController();
+//                Projects newProject = controller.processResults();
+//                projectsView.getSelectionModel().select(newProject);
 //            }
-
 
         }
 
-    }
+    public void onViewCharacterNameListClicked(ActionEvent event) throws IOException {
+        System.out.println("On ViewCharacterNameClicked Button Clicked");
+        stageSwitcher ("namelist-dialog.fxml", event);
 
+    }
     public void backToLoginWindow(ActionEvent event) throws IOException {
         String fxml = "login-window.fxml";
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
@@ -286,6 +292,15 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void stageSwitcher(String fxml, ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 }
