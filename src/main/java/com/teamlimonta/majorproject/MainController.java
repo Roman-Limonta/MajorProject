@@ -2,6 +2,8 @@ package com.teamlimonta.majorproject;
 
 import com.teamlimonta.majorproject.datamodel.ProjectData;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,7 @@ public class MainController {
     public BorderPane mainBorderPane;
     @FXML
     public Button viewNameListButton;
+    public ToggleButton filterToggleButton;
     private Stack<String> nameList = new Stack<>();
 
     private ContextMenu listContextMenu;
@@ -38,6 +41,7 @@ public class MainController {
     public void initialize() {
 
         nameList = loadStackList(file);
+
 
         listContextMenu = new ContextMenu();
         MenuItem deleteMenuItem = new MenuItem("Delete");
@@ -52,8 +56,6 @@ public class MainController {
                 getFullDetails();
             }
         });
-
-
 
         projectsView.setItems(ProjectData.getInstance().getProjectList());
         projectsView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -237,4 +239,11 @@ public class MainController {
         stage.show();
     }
 
+    public void handleFilterButton(ActionEvent event) {
+        if(filterToggleButton.isSelected()) {
+            projectsView.setItems(ProjectData.getInstance().getProjectList().sorted());
+        } else {
+            projectsView.setItems(ProjectData.getInstance().getProjectList());
+        }
+    }
 }

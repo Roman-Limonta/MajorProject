@@ -3,6 +3,7 @@ package com.teamlimonta.majorproject.datamodel;
 import com.teamlimonta.majorproject.Projects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,6 +13,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class ProjectData {
     private static final ProjectData instance = new ProjectData();
@@ -64,6 +68,7 @@ public class ProjectData {
             }
 
         }
+
     }
 
     public void saveProjectList() throws IOException {

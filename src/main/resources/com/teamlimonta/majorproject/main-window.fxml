@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="mainBorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.teamlimonta.majorproject.MainController">
+
+<BorderPane fx:id="mainBorderPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teamlimonta.majorproject.MainController">
     <top>
         <VBox>
             <ToolBar>
@@ -28,6 +37,7 @@
                             <Tooltip text="Log Out of Session" />
                         </tooltip>
                     </Button>
+               <ToggleButton fx:id="filterToggleButton" onAction="#handleFilterButton" mnemonicParsing="false" text="Sorted" />
                 </HBox>
             </ToolBar>
         </VBox>
