@@ -51,15 +51,22 @@ public class NameController {
                 table.put(i, arrayList.get(i));
             }
 
+            arrayList.sort(String::compareToIgnoreCase);
+            System.out.println(arrayList);
+
             System.out.println("Finished Running on the : " + s);
 
             Platform.runLater(() -> {
                 String s1 = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
 
-                for(String table : table.values()){
+//                for(String table : table.values()){
+//                    listOFNamesViewer.getItems().add(table);
+//                }
+
+                for (Iterator<String> it = arrayList.iterator(); it.hasNext(); ) {
+                    String table = it.next();
                     listOFNamesViewer.getItems().add(table);
                 }
-
 
                 System.out.println("Finished Running on the : " + s1);
             });
@@ -72,11 +79,7 @@ public class NameController {
     public void onOkClicked(ActionEvent event) {
         System.out.println("Ok button clicked");
 
-        try{
-            Thread.sleep(10000);
-        } catch (InterruptedException e){
-            System.out.println("The program is sleeping");
-        }
+
     }
 
     public void onCancelClicked(ActionEvent event) throws IOException {
