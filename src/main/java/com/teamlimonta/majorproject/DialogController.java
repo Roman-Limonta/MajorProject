@@ -1,6 +1,7 @@
 package com.teamlimonta.majorproject;
 
 import com.teamlimonta.majorproject.datamodel.ProjectData;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,6 +20,7 @@ public class DialogController {
     private TextField protagonistTextField;
 
     Projects processResults() {
+
         String projectName = nameTextField.getText().trim();
         String details = detailTextArea.getText().trim();
         String protagonist = protagonistTextField.getText().trim();
@@ -28,7 +30,6 @@ public class DialogController {
         Projects newProject = new Projects(projectName, details, protagonist, questionTool, heartOfDarkness);
         ProjectData.getInstance().addProject(newProject);
 
-        System.out.println("Test");
         return newProject;
     }
 }

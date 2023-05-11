@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ProjectData {
-    private static ProjectData instance = new ProjectData();
+    private static final ProjectData instance = new ProjectData();
     private static final String filename = "C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\TempListOfProjects.txt";
     private ObservableList<Projects> projectsList;
     private final DateTimeFormatter formatter;

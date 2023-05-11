@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +32,6 @@ public class LoginController {
 
     public void onLoginClicked(ActionEvent event) throws Exception {
         System.out.println("LoginClicked");
-        System.out.println("Test");
         if (!userLogin.containsKey(userNameTextField.getText())) {
             resultMessage.setText("Login Name Not Found!");
         }
@@ -67,7 +65,7 @@ public class LoginController {
             if (userLogin.get(userNameTextField.getText()).equals(passwordTextField.getText()) && passwordTextField.getText().matches("admin")) {
                 resultMessage.setText("Successful Login");
 
-                stageSwitcher("admin-window.fxml",event);
+                stageSwitcher("admin-window.fxml", event);
             } else {
                 resultMessage.setText("Failed Login");
             }
@@ -110,13 +108,14 @@ public class LoginController {
     }
 
     public static Map<String, String> HashMapFromTextFile() {
-        Map<String, String> map = new HashMap<String, String>();
-        BufferedReader br = null;
 
-        try {
-            br = new BufferedReader(new FileReader(loginInfofile));
 
-            String line = null;
+        Map<String, String> map = new HashMap<>();
+
+
+        try (BufferedReader br = new BufferedReader(new FileReader(loginInfofile))) {
+
+            String line;
 
             while ((line = br.readLine()) != null) {
 
@@ -129,24 +128,18 @@ public class LoginController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception ignored) {
-                }
-                ;
-            }
         }
 
         return map;
+
+
     }
 
     public static void addUserAndPassword(String user, String password, Map<String, String> map) {
         map.put(user, password);
         System.out.println("input added to map");
         System.out.println("New user has been Registered!");
-        Account temp = new Account(user, password);
+        //Account temp = new Account(user, password);
     }
 
 }

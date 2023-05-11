@@ -1,17 +1,14 @@
 package com.teamlimonta.majorproject;
 
-import com.teamlimonta.majorproject.datamodel.ProjectData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.*;
 
 public class AdminController {
@@ -24,12 +21,8 @@ public class AdminController {
     public static BST<String> bst = new BST<>();
     public String[] arrayOfUsers = new String[bst.getSize()];
 
-
-
     public String[] temp;
     public int length;
-
-
 
 
     public void initialize() {
@@ -78,7 +71,7 @@ public class AdminController {
         stage.show();
     }
 
-    public void searchUserName(ActionEvent event) {
+    public void searchUserName() {
         System.out.println(userNameAndPassword.toString());
         System.out.println("*********************");
         System.out.println(bst.getSize());
@@ -89,6 +82,7 @@ public class AdminController {
         popUP.setContentText("Name:");
 
         Optional<String> result = popUP.showAndWait();
+
 
         if (result.isPresent()) {
             if (popUP.getResult().isEmpty()) {
@@ -110,7 +104,7 @@ public class AdminController {
 
     }
 
-    public void deleteAccount(ActionEvent event) {
+    public void deleteAccount() {
 
         projectsView.getSelectionModel().selectFirst();
         String userSelected = projectsView.getSelectionModel().getSelectedItem();
@@ -127,11 +121,11 @@ public class AdminController {
 
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             userLogin.remove(userSelected);
-            initialize();
+            //initialize();
         }
     }
 
-    public void handleKeyPressed(KeyEvent keyEvent) {
+    public void handleKeyPressed() {
     }
 
     public static Stack<String> loadStackList(File file) {

@@ -1,6 +1,7 @@
 package com.teamlimonta.majorproject;
 
 import com.teamlimonta.majorproject.datamodel.ProjectData;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,20 +24,15 @@ import java.util.*;
 public class MainController {
 
     public ListView<Projects> projectsView = new ListView<>();
-    public ListView<String> nameListView = new ListView<>();
     public TextArea projectDetailsTextArea;
     public Label bottomLineLabel;
     public BorderPane mainBorderPane;
     @FXML
-    public ListView<String> listOFNamesViewer = new ListView<>();
-    @FXML
     public Button viewNameListButton;
     private Stack<String> nameList = new Stack<>();
-    public Hashtable<Integer, String> table = new Hashtable<>();
 
     private ContextMenu listContextMenu;
     private final File file = new File("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\ListofNames.txt");
-
 
 
     public void initialize() {
@@ -56,8 +52,10 @@ public class MainController {
                 getFullDetails();
             }
         });
-        projectsView.setItems(ProjectData.getInstance().getProjectList());
 
+
+
+        projectsView.setItems(ProjectData.getInstance().getProjectList());
         projectsView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         projectsView.getSelectionModel().selectFirst();
 
@@ -95,7 +93,7 @@ public class MainController {
 
     }
 
-    public void showNewProjectDialog(ActionEvent event) {
+    public void showNewProjectDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
         dialog.setTitle("Add New Concept");
@@ -117,10 +115,13 @@ public class MainController {
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
+
             DialogController controller = fxmlLoader.getController();
             Projects newProject = controller.processResults();
             projectsView.getSelectionModel().select(newProject);
+
         }
+
     }
 
     public void deleteProject(Projects project) {
@@ -190,7 +191,7 @@ public class MainController {
         }
     }
 
-    public void addCharacterName(ActionEvent event) {
+    public void addCharacterName() {
         TextInputDialog popUP = new TextInputDialog();
         popUP.setTitle("Add Name");
         popUP.setHeaderText("Enter Name:");
@@ -213,77 +214,12 @@ public class MainController {
         System.out.println(nameList);
     }
 
-
-    public void viewCharacterNameList(ActionEvent event) throws IOException {
-
-//        if (nameList != null) {
-//            String temp = nameList.toString().trim();
-//            temp = temp.replaceAll("[^a-zA-Z0-9]", " ");
-//            String[] list = temp.split("[^a-zA-Z0-9]");
-//
-//            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(list).subList(0, list.length - 1));
-//
-//            for (int i = 0; i < arrayList.size() - 1; i++) {
-//                if (arrayList.get(i).isEmpty() || arrayList.get(i).isBlank()) {
-//                    arrayList.remove(i);
-//                    if (i != 0) {i--;}
-//                }
-//            }
-//
-//            System.out.println("this is the array list ");
-//            System.out.println(arrayList);
-//            System.out.println("The array length is= " + arrayList.size());
-//
-//            for (int i = 0; i < arrayList.size() - 1; i++) {
-//                table.put(i, arrayList.get(i));
-//            }
-//
-//            System.out.println(table.toString());
-//
-////            for(String table : table.values()){
-////                listOFNamesViewer.getItems().add(table);
-////            }
-//            for(String table : table.values()){
-//                listOFNamesViewer.getItems().add(table);
-//            }
-//            listOFNamesViewer.getSelectionModel().selectFirst();
-
-
-
-//            Dialog<ButtonType> dialog = new Dialog<>();
-//            dialog.initOwner(mainBorderPane.getScene().getWindow());
-//            dialog.setTitle("List of Names");
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("namelist-dialog.fxml"));
-//
-//            try {
-//                dialog.getDialogPane().setContent(fxmlLoader.load());
-//
-//            } catch (IOException e) {
-//                System.out.println("Couldn't load the dialog");
-//                e.printStackTrace();
-//                return;
-//            }
-//            //Button button = new Button();
-//
-//            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-//            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-//
-//
-//            Optional<ButtonType> result = dialog.showAndWait();
-//            if (result.isPresent() && result.get() == ButtonType.OK) {
-//                DialogController controller = fxmlLoader.getController();
-//                Projects newProject = controller.processResults();
-//                projectsView.getSelectionModel().select(newProject);
-//            }
-
-        }
-
     public void onViewCharacterNameListClicked(ActionEvent event) throws IOException {
         System.out.println("On ViewCharacterNameClicked Button Clicked");
-        stageSwitcher ("namelist-dialog.fxml", event);
+        stageSwitcher("namelist-dialog.fxml", event);
 
     }
+
     public void backToLoginWindow(ActionEvent event) throws IOException {
         String fxml = "login-window.fxml";
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
@@ -300,7 +236,5 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 
 }

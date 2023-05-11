@@ -1,6 +1,5 @@
 package com.teamlimonta.majorproject;
 
-
 import com.teamlimonta.majorproject.datamodel.ProjectData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,10 +20,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
         launch();
         System.out.println("JavaFX Version: " + System.getProperty("javafx.version"));
         System.out.println("JavaFX Runtime Version: " + System.getProperty("javafx.runtime.version"));
-        System.out.println("Test");
 
     }
 

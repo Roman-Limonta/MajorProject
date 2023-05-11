@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class Projects {
     private String name;
-    private String details;
-    private String protagonist;
-    private String questionTool;
-    private String heartOfDarkness;
+    private final String details;
+    private final String protagonist;
+    private final String questionTool;
+    private final String heartOfDarkness;
     private final LocalDate dateCreated;
 
 
@@ -18,7 +18,6 @@ public class Projects {
         this.questionTool = questionTool;
         this.heartOfDarkness = heartOfDarkness;
         this.dateCreated = LocalDate.now();
-        System.out.println("test");
     }
 
     public Projects(String name, String details, String protagonist,String questionTool, String heartOfDarkness, LocalDate dateCreated) {

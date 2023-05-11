@@ -58,6 +58,12 @@ public class NameController {
     }
     public void onOkClicked(ActionEvent event) {
         System.out.println("Ok button clicked");
+
+        try{
+            Thread.sleep(10000);
+        } catch (InterruptedException e){
+            System.out.println("The program is sleeping");
+        }
     }
 
     public void onCancelClicked(ActionEvent event) throws IOException {
