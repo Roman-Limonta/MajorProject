@@ -28,6 +28,7 @@ public class LoginController {
     public Map<String, String> userLogin = HashMapFromTextFile();
     public static File loginInfofile = new File("C:\\Users\\Roman\\Desktop\\MajorProject\\userFiles\\UserNameAndPassword.txt");
     public Button adminButton;
+    public Label regLabel;
 
 
     public void onLoginClicked(ActionEvent event) throws Exception {
@@ -78,6 +79,7 @@ public class LoginController {
 
         if (userLogin.containsKey(loginNameRegTextField.getText())) {
             System.out.println(loginNameRegTextField.getText() + " already exist!");
+            regLabel.setText(loginNameRegTextField.getText() + " already exist.");
         } else {
             addUserAndPassword(loginNameRegTextField.getText(), passwordRegTextField.getText(), userLogin);
 

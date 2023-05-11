@@ -106,7 +106,7 @@ public class AdminController {
 
     public void deleteAccount() {
 
-        projectsView.getSelectionModel().selectFirst();
+        //projectsView.getSelectionModel().selectFirst();
         String userSelected = projectsView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -121,6 +121,9 @@ public class AdminController {
 
         if (result.isPresent() && (result.get() == ButtonType.OK)) {
             userLogin.remove(userSelected);
+            if (bst.search(userSelected)){
+                bst.delete(userSelected);
+            }
             //initialize();
         }
     }
