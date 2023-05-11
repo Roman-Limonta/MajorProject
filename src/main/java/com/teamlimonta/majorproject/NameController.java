@@ -1,5 +1,6 @@
 package com.teamlimonta.majorproject;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,36 +25,48 @@ public class NameController {
 
     public void initialize() throws IOException {
 
-        Stack<String> nameList = loadStackList(file);
+//************************************************************************************************************************
+//************************************************************************************************************************
+        Runnable task = () -> {
+            String s = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
 
-        String temp = nameList.toString().trim();
-        temp = temp.replaceAll("[^a-zA-Z0-9]", " ");
-        String[] list = temp.split("[^a-zA-Z0-9]");
+            Stack<String> nameList = loadStackList(file);
 
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(list).subList(0, list.length - 1));
+            String temp = nameList.toString().trim();
+            temp = temp.replaceAll("[^a-zA-Z0-9]", " ");
+            String[] list = temp.split("[^a-zA-Z0-9]");
 
-        for (int i = 0; i < arrayList.size() - 1; i++) {
-            if (arrayList.get(i).isEmpty() || arrayList.get(i).isBlank()) {
-                arrayList.remove(i);
-                if (i != 0) {
-                    i--;
+            ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(list).subList(0, list.length - 1));
+
+            for (int i = 0; i < arrayList.size() - 1; i++) {
+                if (arrayList.get(i).isEmpty() || arrayList.get(i).isBlank()) {
+                    arrayList.remove(i);
+                    if (i != 0) {
+                        i--;
+                    }
                 }
             }
-        }
 
-        System.out.println("this is the array list ");
-        System.out.println(arrayList);
-        System.out.println("The array length is= " + arrayList.size());
-
-        for (int i = 0; i < arrayList.size() - 1; i++) {
-            table.put(i, arrayList.get(i));
-        }
-
-        System.out.println(table.toString());
-
-        for(String table : table.values()){
-                listOFNamesViewer.getItems().add(table);
+            for (int i = 0; i < arrayList.size() - 1; i++) {
+                table.put(i, arrayList.get(i));
             }
+
+            System.out.println("Finished Running on the : " + s);
+
+            Platform.runLater(() -> {
+                String s1 = Platform.isFxApplicationThread() ? "UI Thread" : "Background Thread";
+
+                for(String table : table.values()){
+                    listOFNamesViewer.getItems().add(table);
+                }
+
+
+                System.out.println("Finished Running on the : " + s1);
+            });
+        };
+
+        new Thread(task).start();
+
 
     }
     public void onOkClicked(ActionEvent event) {
