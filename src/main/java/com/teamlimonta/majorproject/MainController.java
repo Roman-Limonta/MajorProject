@@ -1,9 +1,6 @@
 package com.teamlimonta.majorproject;
 
 import com.teamlimonta.majorproject.datamodel.ProjectData;
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +14,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class MainController {
 

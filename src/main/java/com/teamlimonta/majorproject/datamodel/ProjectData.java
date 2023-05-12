@@ -27,7 +27,6 @@ public class ProjectData {
 
     public static ProjectData getInstance() {
         return instance;
-
     }
 
     private ProjectData() {

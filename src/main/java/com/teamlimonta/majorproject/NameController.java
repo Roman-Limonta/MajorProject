@@ -79,7 +79,6 @@ public class NameController {
     public void onOkClicked(ActionEvent event) {
         System.out.println("Ok button clicked");
 
-
     }
 
     public void onCancelClicked(ActionEvent event) throws IOException {
